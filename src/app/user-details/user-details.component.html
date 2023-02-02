@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-headar">
+    <h1 >{{ title }}</h1>
+  </div>
+
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Email</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of filteruser">
+          <td>{{u.id}}</td>
+          <td><img width="50" [src]="u.avatar" alt=""></td>
+          <td>{{u.email}}</td>
+          <td>{{u.first_name}}</td>
+          <td>{{u.last_name}}</td>
+          <td>
+            <button class="btn btn-primary" routerLink="/users">Back</button>
+          </td>
+        </tr>
+        </tbody>
+
+   </table>
+  </div>
+</div>
+
+</div>

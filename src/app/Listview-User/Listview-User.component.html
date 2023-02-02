@@ -1,0 +1,107 @@
+<app-navbar></app-navbar>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">Email</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let uss of users | paginate: {
+           itemsPerPage: 6,
+           currentPage:pagenumber,
+           totalItems:allUser
+
+          }">
+          <td>{{ uss.id }}</td>
+          <td><img width="50" [src]="uss.avatar" alt="" /></td>
+          <td>{{ uss.email }}</td>
+          <td>
+            <a [routerLink]="['/users', uss.id]"> {{ uss.first_name }}</a>
+          </td>
+          <td>{{ uss.last_name }}</td>
+
+          <td>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+        <tr col-mt-12>
+          <td colspan="6" >
+          <div class="row bg-secondary">
+            <pagination-controls (pageChange)="renderpage($event)"  ></pagination-controls>
+          </div>
+        </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Button trigger modal -->
+<router-outlet></router-outlet>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body bg-secondary">
+        <form [formGroup]="formvalue">
+          <div class="mb-3">
+            <label for="exampleInputName" class="form-label"> Name</label>
+            <input
+              type="text"
+              formControlName="Name"
+              class="form-control"
+              id="exampleInputName"
+              aria-describedby="NameHelp"
+            />
+            <label for="exampleInputJop" class="form-label"> Jop</label>
+            <input
+              type="Jop"
+              formControlName="Jop"
+              class="form-control"
+              id="exampleInputJop"
+              aria-describedby="JopHelp"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="close"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="adduser()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
